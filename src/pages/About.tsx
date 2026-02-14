@@ -51,11 +51,11 @@ const About = () =>
           </motion.div>
           <motion.div {...fadeUp} transition={{ delay: 0.2 }}>
             <h2 className="text-3xl md:text-4xl font-bold mb-6">THE VISION</h2>
-            <p className="text-muted-foreground leading-relaxed mb-4">
-              More than just music — Saint Pen Entertainment is building a movement. Through the Black Angel
-              merchandise line, the Inner Circle community, and the recording studio, the brand creates
-              multiple touchpoints for fans and artists alike.
-            </p>
+            <p className="text-muted-foreground leading-relaxed mb-4">More than just music — Th3 L3agu3 Entertainment is building a movement. Through the Black Angel merchandise line, the Inner Circle community, and the recording studio, the brand creates multiple touchpoints for fans and artists alike.
+
+
+
+          </p>
             <p className="text-muted-foreground leading-relaxed">
               Starting in Houston and scaling to more cities, the goal is to create a network of creative
               spaces where independent artists can thrive. Every recording session, every piece of merch,
