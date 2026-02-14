@@ -50,14 +50,26 @@ const Contact = () => (
         >
           <h2 className="font-display text-2xl md:text-3xl mb-4">FOLLOW THE MOVEMENT</h2>
           <p className="text-muted-foreground mb-6">Stay connected on social media for updates, new music, and behind-the-scenes content.</p>
-          <a
-            href="https://instagram.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 font-display text-sm tracking-wider border border-accent text-accent px-8 py-4 rounded-sm hover:bg-accent hover:text-accent-foreground transition-all"
-          >
-            <Instagram size={18} /> FOLLOW ON INSTAGRAM <ArrowRight size={14} />
-          </a>
+          <div className="flex flex-wrap justify-center gap-4">
+            {[
+              { href: "https://www.instagram.com/saintpenx/?hl=en", label: "Instagram" },
+              { href: "https://www.tiktok.com/@saintpenx", label: "TikTok" },
+              { href: "https://www.facebook.com/SaintPen/", label: "Facebook" },
+              { href: "https://open.spotify.com/artist/7wFlK4KKoES8SJfITWbGiO", label: "Spotify" },
+              { href: "https://music.apple.com/us/album/im-good-pen-verse-single/1871059986", label: "Apple Music" },
+              { href: "https://soundcloud.com/user-546444336", label: "SoundCloud" },
+            ].map((s) => (
+              <a
+                key={s.label}
+                href={s.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-display text-sm tracking-wider border border-accent text-accent px-6 py-3 rounded-sm hover:bg-accent hover:text-accent-foreground transition-all"
+              >
+                {s.label.toUpperCase()}
+              </a>
+            ))}
+          </div>
         </motion.div>
       </div>
     </section>

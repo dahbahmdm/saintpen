@@ -1,5 +1,14 @@
 import { Link } from "react-router-dom";
-import { Instagram, Mail, MapPin } from "lucide-react";
+import { Instagram, Mail, MapPin, Music, Facebook } from "lucide-react";
+
+const socials = [
+  { href: "https://www.instagram.com/saintpenx/?hl=en", label: "Instagram", icon: Instagram },
+  { href: "https://www.facebook.com/SaintPen/", label: "Facebook", icon: Facebook },
+  { href: "https://www.tiktok.com/@saintpenx", label: "TikTok", icon: Music },
+  { href: "https://open.spotify.com/artist/7wFlK4KKoES8SJfITWbGiO", label: "Spotify", icon: Music },
+  { href: "https://music.apple.com/us/album/im-good-pen-verse-single/1871059986", label: "Apple Music", icon: Music },
+  { href: "https://soundcloud.com/user-546444336", label: "SoundCloud", icon: Music },
+];
 
 const Footer = () => (
   <footer className="bg-secondary border-t border-border">
@@ -7,9 +16,23 @@ const Footer = () => (
       <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
         <div>
           <h3 className="text-gradient-gold text-xl mb-4">SAINT PEN</h3>
-          <p className="text-muted-foreground text-sm leading-relaxed">
+          <p className="text-muted-foreground text-sm leading-relaxed mb-5">
             Houston's premier recording studio & entertainment brand. Making music, building community, creating culture.
           </p>
+          <div className="flex flex-wrap gap-3">
+            {socials.map((s) => (
+              <a
+                key={s.label}
+                href={s.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                title={s.label}
+                className="w-9 h-9 rounded-sm bg-muted flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-muted/80 transition-colors"
+              >
+                <s.icon size={16} />
+              </a>
+            ))}
+          </div>
         </div>
         <div>
           <h4 className="font-display text-sm tracking-wider text-accent mb-4">QUICK LINKS</h4>
@@ -35,8 +58,8 @@ const Footer = () => (
             <div className="flex items-center gap-2">
               <MapPin size={16} /> Houston, Texas
             </div>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-foreground transition-colors">
-              <Instagram size={16} /> @saintpen
+            <a href="https://www.instagram.com/saintpenx/?hl=en" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-foreground transition-colors">
+              <Instagram size={16} /> @saintpenx
             </a>
           </div>
         </div>
