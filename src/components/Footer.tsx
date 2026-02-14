@@ -1,10 +1,16 @@
 import { Link } from "react-router-dom";
 import { Instagram, Mail, MapPin, Music, Facebook } from "lucide-react";
 
+const TikTokIcon = ({ size = 16 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+    <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 0 0-.79-.05A6.34 6.34 0 0 0 3.15 15a6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.34-6.34V8.7a8.16 8.16 0 0 0 4.76 1.52v-3.4a4.85 4.85 0 0 1-1-.13z"/>
+  </svg>
+);
+
 const socials = [
   { href: "https://www.instagram.com/saintpenx/?hl=en", label: "Instagram", icon: Instagram },
   { href: "https://www.facebook.com/SaintPen/", label: "Facebook", icon: Facebook },
-  { href: "https://www.tiktok.com/@saintpenx", label: "TikTok", icon: Music },
+  { href: "https://www.tiktok.com/@saintpenx", label: "TikTok", icon: TikTokIcon },
   { href: "https://open.spotify.com/artist/7wFlK4KKoES8SJfITWbGiO", label: "Spotify", icon: Music },
   { href: "https://music.apple.com/us/album/im-good-pen-verse-single/1871059986", label: "Apple Music", icon: Music },
   { href: "https://soundcloud.com/user-546444336", label: "SoundCloud", icon: Music },
