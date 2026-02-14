@@ -19,13 +19,19 @@ const AppleMusicIcon = ({ size = 16 }: { size?: number }) => (
   </svg>
 );
 
+const SoundCloudIcon = ({ size = 16 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+    <path d="M11.56 8.87V17h8.76c1.85 0 3.35-1.5 3.35-3.35 0-1.85-1.5-3.35-3.35-3.35-.35 0-.69.05-1.01.15C18.95 8.21 17.16 6.5 14.96 6.5c-1.2 0-2.28.5-3.06 1.31-.1.1-.24.34-.34.56v.5zM10.5 9.13c-.16-.52-.38-1.01-.66-1.46C8.89 6.15 7.28 5.13 5.45 5.13c-2.97 0-5.38 2.41-5.38 5.38 0 2.97 2.41 5.38 5.38 5.38h.56V9.13h4.49zM1.57 17h.94V9.51c-.58.55-1.01 1.24-1.24 2.03-.13.45-.2.93-.2 1.42 0 1.55.66 2.95 1.72 3.93l-.22.11zM3.45 17h.94V8.53c-.38.19-.73.42-1.05.7L3.45 17zm1.88 0h.94V8.09c-.33.08-.64.2-.94.35V17zm1.88 0h.93V8.09c-.32-.08-.64-.12-.93-.14V17zm1.87 0h.94V8.46c-.28-.18-.59-.32-.94-.4V17z"/>
+  </svg>
+);
+
 const socials = [
   { href: "https://www.instagram.com/saintpenx/?hl=en", label: "Instagram", icon: Instagram },
   { href: "https://www.facebook.com/SaintPen/", label: "Facebook", icon: Facebook },
   { href: "https://www.tiktok.com/@saintpenx", label: "TikTok", icon: TikTokIcon },
   { href: "https://open.spotify.com/artist/7wFlK4KKoES8SJfITWbGiO", label: "Spotify", icon: SpotifyIcon },
   { href: "https://music.apple.com/us/album/im-good-pen-verse-single/1871059986", label: "Apple Music", icon: AppleMusicIcon },
-  { href: "https://soundcloud.com/user-546444336", label: "SoundCloud", icon: Music },
+  { href: "https://soundcloud.com/user-546444336", label: "SoundCloud", icon: SoundCloudIcon },
 ];
 
 const Footer = () => (
