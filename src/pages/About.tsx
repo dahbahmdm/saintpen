@@ -19,7 +19,7 @@ const About = () =>
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <span className="font-display text-xs tracking-[0.4em] text-primary mb-4 block">THE STORY</span>
             <h1 className="text-4xl md:text-6xl font-bold mb-6">ABOUT <span className="text-gradient-gold">SAINT PEN</span></h1>
-            <p className="text-muted-foreground leading-relaxed mb-4">Saint Pen Entertainment is a Houston-based music and entertainment brand built on authenticity, creativity, and community. Founded by Tremayne Hafford, the brand encompasses recording studio services, original music production, merchandise, and a growing community of artists and fans.
+            <p className="text-muted-foreground leading-relaxed mb-4">Th3 L3agu3 Entertainment is a Houston-based music and entertainment brand built on authenticity, creativity, and community. Founded by Saint Pen, the brand encompasses recording studio services, original music production, merchandise, and a growing community of artists and fans.
 
 
 
