@@ -14,23 +14,23 @@ const fadeUp = {
   initial: { opacity: 0, y: 30 },
   whileInView: { opacity: 1, y: 0 },
   viewport: { once: true },
-  transition: { duration: 0.6 },
+  transition: { duration: 0.6 }
 };
 
 const services = [
-  { icon: Mic2, title: "Recording Studio", desc: "Professional audio recording with top-tier equipment", link: "/recording-studio" },
-  { icon: Camera, title: "Green Room", desc: "Video, photo, and skit production space", link: "/recording-studio" },
-  { icon: Music, title: "Music & Artist Services", desc: "Streaming, production, and ghostwriting", link: "/music" },
-  { icon: Users, title: "Membership", desc: "Recurring studio access and community perks", link: "/contact" },
-];
+{ icon: Mic2, title: "Recording Studio", desc: "Professional audio recording with top-tier equipment", link: "/recording-studio" },
+{ icon: Camera, title: "Green Room", desc: "Video, photo, and skit production space", link: "/recording-studio" },
+{ icon: Music, title: "Music & Artist Services", desc: "Streaming, production, and ghostwriting", link: "/music" },
+{ icon: Users, title: "Membership", desc: "Recurring studio access and community perks", link: "/contact" }];
+
 
 const albums = [
-  { img: imGoodCover, title: "I'm Good", year: "" },
-  { img: somethingToProveCover, title: "Something to Prove", year: "" },
-  { img: changeCover, title: "Change", year: "ft. Downstrs" },
-  { img: askAboutMeCover, title: "Ask About Me", year: "ft. Reggie D." },
-  { img: stillTippinCover, title: "Still Tippin", year: "ft. Ikezntana" },
-];
+{ img: imGoodCover, title: "I'm Good", year: "" },
+{ img: somethingToProveCover, title: "Something to Prove", year: "" },
+{ img: changeCover, title: "Change", year: "ft. Downstrs" },
+{ img: askAboutMeCover, title: "Ask About Me", year: "ft. Reggie D." },
+{ img: stillTippinCover, title: "Still Tippin", year: "ft. Ikezntana" }];
+
 
 const Index = () => {
   return (
@@ -48,8 +48,8 @@ const Index = () => {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="max-w-2xl"
-          >
+            className="max-w-2xl">
+
             <span className="font-display text-xs tracking-[0.4em] text-primary mb-4 block">
               HOUSTON, TEXAS
             </span>
@@ -64,14 +64,14 @@ const Index = () => {
             <div className="flex flex-wrap gap-4">
               <Link
                 to="/recording-studio"
-                className="inline-flex items-center gap-2 font-display text-sm tracking-wider bg-primary text-primary-foreground px-8 py-4 rounded-sm hover:bg-primary/90 transition-all glow-red"
-              >
+                className="inline-flex items-center gap-2 font-display text-sm tracking-wider bg-primary text-primary-foreground px-8 py-4 rounded-sm hover:bg-primary/90 transition-all glow-red">
+
                 BOOK STUDIO TIME <ArrowRight size={16} />
               </Link>
               <Link
                 to="/music"
-                className="inline-flex items-center gap-2 font-display text-sm tracking-wider border border-accent text-accent px-8 py-4 rounded-sm hover:bg-accent hover:text-accent-foreground transition-all"
-              >
+                className="inline-flex items-center gap-2 font-display text-sm tracking-wider border border-accent text-accent px-8 py-4 rounded-sm hover:bg-accent hover:text-accent-foreground transition-all">
+
                 LISTEN NOW
               </Link>
             </div>
@@ -84,18 +84,18 @@ const Index = () => {
         <div className="container">
           <SectionHeading label="What We Do" title="OUR SERVICES" />
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {services.map((s, i) => (
-              <motion.div key={s.title} {...fadeUp} transition={{ delay: i * 0.1, duration: 0.5 }}>
+            {services.map((s, i) =>
+            <motion.div key={s.title} {...fadeUp} transition={{ delay: i * 0.1, duration: 0.5 }}>
                 <Link
-                  to={s.link}
-                  className="block bg-gradient-card border border-border rounded-sm p-6 hover:border-primary/50 transition-all group h-full"
-                >
+                to={s.link}
+                className="block bg-gradient-card border border-border rounded-sm p-6 hover:border-primary/50 transition-all group h-full">
+
                   <s.icon className="text-primary mb-4" size={28} />
                   <h3 className="font-display text-lg mb-2 group-hover:text-gradient-gold transition-colors">{s.title}</h3>
                   <p className="text-muted-foreground text-sm">{s.desc}</p>
                 </Link>
               </motion.div>
-            ))}
+            )}
           </div>
         </div>
       </section>
@@ -105,21 +105,21 @@ const Index = () => {
         <div className="container">
           <SectionHeading label="Latest Releases" title="THE MUSIC" />
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
-            {albums.map((a, i) => (
-              <motion.div key={a.title} {...fadeUp} transition={{ delay: i * 0.08, duration: 0.5 }}>
+            {albums.map((a, i) =>
+            <motion.div key={a.title} {...fadeUp} transition={{ delay: i * 0.08, duration: 0.5 }}>
                 <Link to="/music" className="group block">
                   <div className="aspect-square overflow-hidden rounded-sm mb-3">
                     <img
-                      src={a.img}
-                      alt={a.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
+                    src={a.img}
+                    alt={a.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+
                   </div>
                   <h4 className="font-display text-sm tracking-wide truncate">{a.title}</h4>
                   {a.year && <p className="text-xs text-muted-foreground">{a.year}</p>}
                 </Link>
               </motion.div>
-            ))}
+            )}
           </div>
           <div className="text-center mt-10">
             <Link to="/music" className="font-display text-sm tracking-wider text-primary hover:text-coral transition-colors inline-flex items-center gap-2">
@@ -144,14 +144,14 @@ const Index = () => {
                 From the recording booth to the stage, his mission is to create authentic music that resonates
                 with the culture and builds a community around art, creativity, and hustle.
               </p>
-              <p className="text-muted-foreground leading-relaxed mb-8">
-                Through Saint Pen Entertainment, he's building a platform for artists, creatives, and dreamers
-                in Houston and beyond.
+              <p className="text-muted-foreground leading-relaxed mb-8">Through Th3 L3agu3 Entertainment, he's building a platform for artists, creatives, and dreamers in Houston and beyond.
+
+
               </p>
               <Link
                 to="/about"
-                className="font-display text-sm tracking-wider text-accent hover:text-gold-bright transition-colors inline-flex items-center gap-2"
-              >
+                className="font-display text-sm tracking-wider text-accent hover:text-gold-bright transition-colors inline-flex items-center gap-2">
+
                 LEARN MORE <ArrowRight size={14} />
               </Link>
             </motion.div>
@@ -170,15 +170,15 @@ const Index = () => {
             </p>
             <Link
               to="/recording-studio"
-              className="inline-flex items-center gap-2 font-display text-sm tracking-wider bg-primary text-primary-foreground px-8 py-4 rounded-sm hover:bg-primary/90 transition-all glow-red"
-            >
+              className="inline-flex items-center gap-2 font-display text-sm tracking-wider bg-primary text-primary-foreground px-8 py-4 rounded-sm hover:bg-primary/90 transition-all glow-red">
+
               BOOK YOUR SESSION <ArrowRight size={16} />
             </Link>
           </motion.div>
         </div>
       </section>
-    </div>
-  );
+    </div>);
+
 };
 
 export default Index;
