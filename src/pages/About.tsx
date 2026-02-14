@@ -8,31 +8,31 @@ const fadeUp = {
   initial: { opacity: 0, y: 30 },
   whileInView: { opacity: 1, y: 0 },
   viewport: { once: true },
-  transition: { duration: 0.6 },
+  transition: { duration: 0.6 }
 };
 
-const About = () => (
-  <div className="min-h-screen pt-20">
+const About = () =>
+<div className="min-h-screen pt-20">
     <section className="py-20 md:py-28 bg-gradient-dark">
       <div className="container">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <span className="font-display text-xs tracking-[0.4em] text-primary mb-4 block">THE STORY</span>
             <h1 className="text-4xl md:text-6xl font-bold mb-6">ABOUT <span className="text-gradient-gold">SAINT PEN</span></h1>
-            <p className="text-muted-foreground leading-relaxed mb-4">
-              Saint Pen Entertainment is a Houston-based music and entertainment brand built on authenticity,
-              creativity, and community. Founded by Saint Pen, the brand encompasses recording studio services,
-              original music production, merchandise, and a growing community of artists and fans.
-            </p>
+            <p className="text-muted-foreground leading-relaxed mb-4">Saint Pen Entertainment is a Houston-based music and entertainment brand built on authenticity, creativity, and community. Founded by Tremayne Hafford, the brand encompasses recording studio services, original music production, merchandise, and a growing community of artists and fans.
+
+
+
+          </p>
             <p className="text-muted-foreground leading-relaxed mb-8">
               From the streets of Houston to the recording booth, Saint Pen's mission is to create a platform
               where artists can develop their craft, share their stories, and build something that lasts. The studio
               serves as a creative hub for Houston's music scene — a place where culture is made, not just consumed.
             </p>
             <Link
-              to="/recording-studio"
-              className="inline-flex items-center gap-2 font-display text-sm tracking-wider text-primary hover:text-coral transition-colors"
-            >
+            to="/recording-studio"
+            className="inline-flex items-center gap-2 font-display text-sm tracking-wider text-primary hover:text-coral transition-colors">
+
               VISIT THE STUDIO <ArrowRight size={14} />
             </Link>
           </motion.div>
@@ -65,7 +65,7 @@ const About = () => (
         </div>
       </div>
     </section>
-  </div>
-);
+  </div>;
+
 
 export default About;
