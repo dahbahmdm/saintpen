@@ -35,7 +35,7 @@ const products = [
     name: "Follow Ya Heart — Red Long-Sleeve",
     description:
       "Premium long-sleeve tee featuring the Black Angel design with 'Follow Ya Heart' sleeve print. Bold red colorway that makes a statement.",
-    images: [redTee1, redTee4, redTee2, redTee3],
+    images: [redTee1, blueTee1, redTee2, redTee3],
     color: "Red",
     link: GHL_STORE_URL,
   },
