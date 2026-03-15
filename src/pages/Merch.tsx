@@ -43,7 +43,7 @@ const products = [
     name: "Follow Ya Heart — Blue Long-Sleeve",
     description:
       "The same iconic Black Angel design in a deep royal blue. 'Follow Ya Heart' runs down the sleeve — a reminder to stay true.",
-    images: [blueTee1, blueTee2, blueTee3],
+    images: [hoodie1, blueTee2, blueTee3],
     color: "Blue",
     link: GHL_STORE_URL,
   },
