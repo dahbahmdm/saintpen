@@ -174,7 +174,7 @@ const Index = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {[
               { img: merchRed1, label: "Red Long-Sleeve" },
-              { img: merchRed3, label: "Red Long-Sleeve" },
+              { img: merchGroupShoot, label: "The Collection" },
               { img: merchBlue1, label: "Blue Long-Sleeve" },
               { img: merchHoodie1, label: "Hoodie — Coming Soon" },
             ].map((item, i) => (
