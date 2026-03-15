@@ -58,7 +58,7 @@ const products = [
 ];
 
 const comingSoon = [
-  { img: hoodie1, label: "Follow Ya Heart Hoodie" },
+  { img: redTee4, label: "Follow Ya Heart Hoodie" },
   { img: hoodie2, label: "Follow Ya Heart Hoodie" },
 ];
 
