@@ -12,7 +12,7 @@ import followYourHeartCleanCover from "@/assets/follow-your-heart-clean-cover.jp
 import followYourHeartDirtyCover from "@/assets/follow-your-heart-dirty-cover.jpg";
 import artImage from "@/assets/saint-pen-art.jpg";
 import merchRed1 from "@/assets/merch-red-tee-1.jpg";
-import merchRed3 from "@/assets/merch-red-tee-3.jpg";
+import merchGroupShoot from "@/assets/merch-group-shoot.jpg";
 import merchBlue1 from "@/assets/merch-blue-tee-1.jpg";
 import merchHoodie1 from "@/assets/merch-hoodie-1.jpg";
 
