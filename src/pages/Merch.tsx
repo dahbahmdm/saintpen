@@ -9,17 +9,10 @@ import redTee3 from "@/assets/merch-red-tee-3.jpg";
 import redTee4 from "@/assets/merch-red-tee-4.jpg";
 import blueTee1 from "@/assets/merch-blue-tee-1.jpg";
 import blueTee2 from "@/assets/merch-blue-tee-2.jpg";
-import blueTee3 from "@/assets/merch-blue-tee-3.jpg";
-import blackTee1 from "@/assets/merch-black-tee-1.jpg";
-import blackTee2 from "@/assets/merch-black-tee-2.jpg";
-import blackTee3 from "@/assets/merch-black-tee-3.jpg";
 import hoodie1 from "@/assets/merch-hoodie-1.jpg";
 import hoodie2 from "@/assets/merch-hoodie-2.jpg";
 import studioSession from "@/assets/merch-studio-session.jpg";
 import lifestyle1 from "@/assets/merch-lifestyle-1.jpg";
-import groupShoot from "@/assets/merch-group-shoot.jpg";
-import sleeveDetail from "@/assets/merch-sleeve-detail.jpg";
-import kidsTee from "@/assets/merch-kids-tee.jpg";
 
 const fadeUp = {
   initial: { opacity: 0, y: 30 },
@@ -28,7 +21,7 @@ const fadeUp = {
   transition: { duration: 0.6 },
 };
 
-const GHL_STORE_URL = "#";
+const GHL_STORE_URL = "#"; // Replace with your GHL store URL
 
 const products = [
   {
@@ -43,16 +36,8 @@ const products = [
     name: "Follow Ya Heart — Blue Long-Sleeve",
     description:
       "The same iconic Black Angel design in a deep royal blue. 'Follow Ya Heart' runs down the sleeve — a reminder to stay true.",
-    images: [blueTee1, blueTee2, blueTee3],
+    images: [blueTee1, blueTee2],
     color: "Blue",
-    link: GHL_STORE_URL,
-  },
-  {
-    name: "Follow Ya Heart — Black Long-Sleeve",
-    description:
-      "The Black Angel design on a sleek black long-sleeve. Clean, bold, and versatile — rep the movement in any setting.",
-    images: [blackTee1, blackTee2, blackTee3],
-    color: "Black",
     link: GHL_STORE_URL,
   },
 ];
@@ -66,11 +51,8 @@ const Merch = () => {
   return (
     <div className="min-h-screen">
       {/* Hero */}
-      <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
-        <div className="absolute inset-0">
-          <img src={groupShoot} alt="Follow Ya Heart collection" className="w-full h-full object-cover opacity-25" />
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-background/60" />
-        </div>
+      <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 bg-gradient-dark overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background" />
         <div className="container relative z-10 text-center">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -106,6 +88,7 @@ const Merch = () => {
                 className="bg-gradient-card border border-border rounded-sm overflow-hidden"
               >
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
+                  {/* Image grid */}
                   <div
                     className={`grid ${
                       product.images.length > 2
@@ -124,6 +107,7 @@ const Merch = () => {
                     ))}
                   </div>
 
+                  {/* Product info */}
                   <div className="flex flex-col justify-center p-8 md:p-12 lg:p-16">
                     <span className="font-display text-xs tracking-[0.3em] text-primary mb-3 block">
                       {product.color.toUpperCase()} COLORWAY
@@ -150,7 +134,7 @@ const Merch = () => {
         </div>
       </section>
 
-      {/* Coming Soon */}
+      {/* Coming Soon - Hoodies */}
       <section className="py-20 md:py-28 bg-secondary/50">
         <div className="container">
           <SectionHeading label="Coming Soon" title="MORE DROPS LOADING" />
@@ -189,16 +173,22 @@ const Merch = () => {
           <SectionHeading label="The Culture" title="BEHIND THE BRAND" />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <motion.div {...fadeUp} className="aspect-video overflow-hidden rounded-sm">
-              <img src={studioSession} alt="Studio session" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+              <img
+                src={studioSession}
+                alt="Studio session"
+                className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+              />
             </motion.div>
-            <motion.div {...fadeUp} transition={{ delay: 0.1 }} className="aspect-video overflow-hidden rounded-sm">
-              <img src={lifestyle1} alt="Lifestyle" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
-            </motion.div>
-            <motion.div {...fadeUp} transition={{ delay: 0.2 }} className="aspect-video overflow-hidden rounded-sm">
-              <img src={sleeveDetail} alt="Sleeve detail — all colorways" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
-            </motion.div>
-            <motion.div {...fadeUp} transition={{ delay: 0.3 }} className="aspect-video overflow-hidden rounded-sm">
-              <img src={kidsTee} alt="Young fan in Th3 L3agu3 tee" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+            <motion.div
+              {...fadeUp}
+              transition={{ delay: 0.1 }}
+              className="aspect-video overflow-hidden rounded-sm"
+            >
+              <img
+                src={lifestyle1}
+                alt="Lifestyle"
+                className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+              />
             </motion.div>
           </div>
         </div>
