@@ -64,6 +64,7 @@ const Footer = () => (
             {[
               { to: "/recording-studio", label: "Recording Studio" },
               { to: "/music", label: "Music" },
+              { to: "/merch", label: "Merch" },
               { to: "/about", label: "About" },
               { to: "/contact", label: "Contact" },
             ].map((l) => (

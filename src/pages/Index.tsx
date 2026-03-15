@@ -167,6 +167,39 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Merch Preview */}
+      <section className="py-20 md:py-28 bg-secondary/50">
+        <div className="container">
+          <SectionHeading label="Official Merch" title="THE BLACK ART STORE" />
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {[
+              { img: merchRed1, label: "Red Long-Sleeve" },
+              { img: merchRed3, label: "Red Long-Sleeve" },
+              { img: merchBlue1, label: "Blue Long-Sleeve" },
+              { img: merchHoodie1, label: "Hoodie — Coming Soon" },
+            ].map((item, i) => (
+              <motion.div key={i} {...fadeUp} transition={{ delay: i * 0.1, duration: 0.5 }}>
+                <Link to="/merch" className="group block">
+                  <div className="aspect-[3/4] overflow-hidden rounded-sm mb-3">
+                    <img
+                      src={item.img}
+                      alt={item.label}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                  </div>
+                  <h4 className="font-display text-sm tracking-wide">{item.label}</h4>
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+          <div className="text-center mt-10">
+            <Link to="/merch" className="font-display text-sm tracking-wider text-primary hover:text-coral transition-colors inline-flex items-center gap-2">
+              SHOP ALL MERCH <ArrowRight size={14} />
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Location CTA */}
       <section className="py-20 md:py-28 bg-gradient-card border-y border-border">
         <div className="container text-center">

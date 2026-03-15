@@ -8,6 +8,7 @@ const navLinks = [
   { to: "/", label: "Home" },
   { to: "/recording-studio", label: "Studio" },
   { to: "/music", label: "Music" },
+  { to: "/merch", label: "Merch" },
   { to: "/about", label: "About" },
   { to: "/contact", label: "Contact" },
 ];
