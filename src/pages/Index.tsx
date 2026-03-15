@@ -8,6 +8,8 @@ import somethingToProveCover from "@/assets/something-to-prove-cover.webp";
 import changeCover from "@/assets/change-cover.webp";
 import askAboutMeCover from "@/assets/ask-about-me-cover.webp";
 import stillTippinCover from "@/assets/still-tippin-cover.webp";
+import followYourHeartCleanCover from "@/assets/follow-your-heart-clean-cover.jpg";
+import followYourHeartDirtyCover from "@/assets/follow-your-heart-dirty-cover.jpg";
 import artImage from "@/assets/saint-pen-art.jpg";
 
 const fadeUp = {
@@ -25,6 +27,8 @@ const services = [
 
 
 const albums = [
+{ img: followYourHeartCleanCover, title: "Follow Your Heart (Clean)", year: "NEW" },
+{ img: followYourHeartDirtyCover, title: "Follow Your Heart (Dirty)", year: "NEW" },
 { img: imGoodCover, title: "I'm Good", year: "" },
 { img: somethingToProveCover, title: "Something to Prove", year: "" },
 { img: changeCover, title: "Change", year: "ft. Downstrs" },
