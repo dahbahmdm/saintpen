@@ -8,6 +8,8 @@ import somethingToProveCover from "@/assets/something-to-prove-cover.webp";
 import changeCover from "@/assets/change-cover.webp";
 import askAboutMeCover from "@/assets/ask-about-me-cover.webp";
 import stillTippinCover from "@/assets/still-tippin-cover.webp";
+import followYourHeartCleanCover from "@/assets/follow-your-heart-clean-cover.jpg";
+import followYourHeartDirtyCover from "@/assets/follow-your-heart-dirty-cover.jpg";
 import artImage from "@/assets/saint-pen-art.jpg";
 
 const fadeUp = {
