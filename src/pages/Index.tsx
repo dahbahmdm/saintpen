@@ -11,6 +11,10 @@ import stillTippinCover from "@/assets/still-tippin-cover.webp";
 import followYourHeartCleanCover from "@/assets/follow-your-heart-clean-cover.jpg";
 import followYourHeartDirtyCover from "@/assets/follow-your-heart-dirty-cover.jpg";
 import artImage from "@/assets/saint-pen-art.jpg";
+import merchRed1 from "@/assets/merch-red-tee-1.jpg";
+import merchRed3 from "@/assets/merch-red-tee-3.jpg";
+import merchBlue1 from "@/assets/merch-blue-tee-1.jpg";
+import merchHoodie1 from "@/assets/merch-hoodie-1.jpg";
 
 const fadeUp = {
   initial: { opacity: 0, y: 30 },
@@ -159,6 +163,39 @@ const Index = () => {
                 LEARN MORE <ArrowRight size={14} />
               </Link>
             </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Merch Preview */}
+      <section className="py-20 md:py-28 bg-secondary/50">
+        <div className="container">
+          <SectionHeading label="Official Merch" title="THE BLACK ART STORE" />
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {[
+              { img: merchRed1, label: "Red Long-Sleeve" },
+              { img: merchRed3, label: "Red Long-Sleeve" },
+              { img: merchBlue1, label: "Blue Long-Sleeve" },
+              { img: merchHoodie1, label: "Hoodie — Coming Soon" },
+            ].map((item, i) => (
+              <motion.div key={i} {...fadeUp} transition={{ delay: i * 0.1, duration: 0.5 }}>
+                <Link to="/merch" className="group block">
+                  <div className="aspect-[3/4] overflow-hidden rounded-sm mb-3">
+                    <img
+                      src={item.img}
+                      alt={item.label}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                  </div>
+                  <h4 className="font-display text-sm tracking-wide">{item.label}</h4>
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+          <div className="text-center mt-10">
+            <Link to="/merch" className="font-display text-sm tracking-wider text-primary hover:text-coral transition-colors inline-flex items-center gap-2">
+              SHOP ALL MERCH <ArrowRight size={14} />
+            </Link>
           </div>
         </div>
       </section>
