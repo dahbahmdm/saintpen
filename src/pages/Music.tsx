@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import SectionHeading from "@/components/SectionHeading";
+import followYourHeartCleanCover from "@/assets/follow-your-heart-clean-cover.jpg";
+import followYourHeartDirtyCover from "@/assets/follow-your-heart-dirty-cover.jpg";
 import imGoodCover from "@/assets/im-good-cover.webp";
 import somethingToProveCover from "@/assets/something-to-prove-cover.webp";
 import changeCover from "@/assets/change-cover.webp";
@@ -14,7 +16,22 @@ const fadeUp = {
   transition: { duration: 0.6 },
 };
 
+const featuredVersions = [
+  {
+    img: followYourHeartCleanCover,
+    label: "Clean Version",
+    link: "https://distrokid.com/hyperfollow/saintpenandikezntana/saints-and-sinners?afsrc=1&irclickid=znk37nx7bxyZWRMWqQQQPxVeUkuzPxzBRySTTY0&irgwc=1&irpid=10078&sharedid=linktr.ee&utm_campaign=10078&utm_medium=affiliate&utm_source=impact",
+  },
+  {
+    img: followYourHeartDirtyCover,
+    label: "Dirty Version",
+    link: "https://distrokid.com/hyperfollow/saintpenandikezntana/saints--sinners?afsrc=1&irclickid=znk37nx7bxyZWRMWqQQQPxVeUkuzNeSt0yI61g0&irgwc=1&irpid=10078&sharedid=linktr.ee&utm_campaign=10078&utm_medium=affiliate&utm_source=impact",
+  },
+];
+
 const tracks = [
+  { img: followYourHeartCleanCover, title: "Follow Your Heart (Clean)", artist: "Saint Pen" },
+  { img: followYourHeartDirtyCover, title: "Follow Your Heart (Dirty)", artist: "Saint Pen" },
   { img: imGoodCover, title: "I'm Good", artist: "Saint Pen" },
   { img: somethingToProveCover, title: "Something to Prove", artist: "Saint Pen" },
   { img: changeCover, title: "Change", artist: "Saint Pen ft. Downstrs" },
@@ -35,6 +52,46 @@ const MusicPage = () => (
             Explore Saint Pen's catalog — from raw Houston hip-hop to soulful collaborations.
           </p>
         </motion.div>
+      </div>
+    </section>
+
+    {/* Featured Release */}
+    <section className="py-20 md:py-28 bg-secondary/50">
+      <div className="container">
+        <SectionHeading label="NEW RELEASE" title="FOLLOW YOUR HEART" />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-4xl mx-auto">
+          {featuredVersions.map((v, i) => (
+            <motion.div
+              key={v.label}
+              {...fadeUp}
+              transition={{ delay: i * 0.15 }}
+              className="group glow-gold rounded-sm overflow-hidden bg-card"
+            >
+              <div className="aspect-square overflow-hidden">
+                <img
+                  src={v.img}
+                  alt={`Follow Your Heart - ${v.label}`}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+              <div className="p-5">
+                <span className="font-display text-xs tracking-[0.3em] text-primary uppercase block mb-1">
+                  {v.label}
+                </span>
+                <h3 className="font-display text-lg md:text-xl tracking-wide mb-1">Follow Your Heart</h3>
+                <p className="text-sm text-muted-foreground mb-4">Saint Pen</p>
+                <a
+                  href={v.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 rounded-md bg-primary text-primary-foreground px-6 py-2.5 text-sm font-medium tracking-wider hover:bg-primary/90 transition-colors"
+                >
+                  STREAM NOW
+                </a>
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
 
