@@ -31,8 +31,8 @@ const services = [
 
 
 const albums = [
-{ img: followYourHeartCleanCover, title: "Follow Your Heart (Clean)", year: "NEW" },
-{ img: followYourHeartDirtyCover, title: "Follow Your Heart (Dirty)", year: "NEW" },
+{ img: followYourHeartCleanCover, title: "Saints & Sinners (Clean)", year: "NEW" },
+{ img: followYourHeartDirtyCover, title: "Saints & Sinners (Dirty)", year: "NEW" },
 { img: imGoodCover, title: "I'm Good", year: "" },
 { img: somethingToProveCover, title: "Something to Prove", year: "" },
 { img: changeCover, title: "Change", year: "ft. Downstrs" },
