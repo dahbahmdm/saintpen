@@ -30,8 +30,8 @@ const featuredVersions = [
 ];
 
 const tracks = [
-  { img: followYourHeartCleanCover, title: "Follow Your Heart (Clean)", artist: "Saint Pen" },
-  { img: followYourHeartDirtyCover, title: "Follow Your Heart (Dirty)", artist: "Saint Pen" },
+  { img: followYourHeartCleanCover, title: "Saints & Sinners (Clean)", artist: "Saint Pen" },
+  { img: followYourHeartDirtyCover, title: "Saints & Sinners (Dirty)", artist: "Saint Pen" },
   { img: imGoodCover, title: "I'm Good", artist: "Saint Pen" },
   { img: somethingToProveCover, title: "Something to Prove", artist: "Saint Pen" },
   { img: changeCover, title: "Change", artist: "Saint Pen ft. Downstrs" },
@@ -58,7 +58,7 @@ const MusicPage = () => (
     {/* Featured Release */}
     <section className="py-20 md:py-28 bg-secondary/50">
       <div className="container">
-        <SectionHeading label="NEW RELEASE" title="FOLLOW YOUR HEART" />
+        <SectionHeading label="NEW RELEASE" title="SAINTS & SINNERS" />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-4xl mx-auto">
           {featuredVersions.map((v, i) => (
             <motion.div
@@ -70,7 +70,7 @@ const MusicPage = () => (
               <div className="aspect-square overflow-hidden">
                 <img
                   src={v.img}
-                  alt={`Follow Your Heart - ${v.label}`}
+                  alt={`Saints & Sinners - ${v.label}`}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
               </div>
@@ -78,7 +78,7 @@ const MusicPage = () => (
                 <span className="font-display text-xs tracking-[0.3em] text-primary uppercase block mb-1">
                   {v.label}
                 </span>
-                <h3 className="font-display text-lg md:text-xl tracking-wide mb-1">Follow Your Heart</h3>
+                <h3 className="font-display text-lg md:text-xl tracking-wide mb-1">Saints & Sinners</h3>
                 <p className="text-sm text-muted-foreground mb-4">Saint Pen</p>
                 <a
                   href={v.link}
