@@ -11,6 +11,7 @@ import RecordingStudio from "./pages/RecordingStudio";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Merch from "./pages/Merch";
+import Membership from "./pages/Membership";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
