@@ -9,6 +9,7 @@ const navLinks = [
   { to: "/recording-studio", label: "Studio" },
   { to: "/music", label: "Music" },
   { to: "/merch", label: "Merch" },
+  { to: "/membership", label: "Membership" },
   { to: "/about", label: "About" },
   { to: "/contact", label: "Contact" },
 ];
