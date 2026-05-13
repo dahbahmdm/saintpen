@@ -41,15 +41,34 @@ const RecordingStudio = () => (
           {[
             { icon: Mic2, title: "Audio Recording", desc: "Professional vocal & instrument recording with industry-standard equipment. Perfect sound isolation and mixing capabilities." },
             { icon: Camera, title: "Green Room", desc: "Full video production, photography, podcast and skit creation space. Lighting rigs and backdrops included." },
-            { icon: Clock, title: "Flexible Sessions", desc: "Book by the hour, half-day, or full-day. Late night sessions available for that midnight inspiration." },
+            { icon: Clock, title: "Flexible Sessions", desc: "Book by the hour, half-day, or full-day. Late night sessions available for that midnight inspiration.", href: "/book-studio" },
             { icon: DollarSign, title: "Member Discounts", desc: "Recurring access from $600/mo unlocks discounted studio + Greenroom hours and priority scheduling." },
-          ].map((s, i) => (
-            <motion.div key={s.title} {...fadeUp} transition={{ delay: i * 0.1 }} className="bg-gradient-card border border-border rounded-sm p-8">
-              <s.icon className="text-primary mb-4" size={28} />
-              <h3 className="font-display text-xl mb-3">{s.title}</h3>
-              <p className="text-muted-foreground leading-relaxed">{s.desc}</p>
-            </motion.div>
-          ))}
+          ].map((s, i) => {
+            const inner = (
+              <>
+                <s.icon className="text-primary mb-4" size={28} />
+                <h3 className="font-display text-xl mb-3 flex items-center gap-2">
+                  {s.title}
+                  {s.href && <ArrowRight className="text-primary opacity-0 group-hover:opacity-100 transition-opacity" size={18} />}
+                </h3>
+                <p className="text-muted-foreground leading-relaxed">{s.desc}</p>
+              </>
+            );
+            return s.href ? (
+              <motion.div key={s.title} {...fadeUp} transition={{ delay: i * 0.1 }}>
+                <Link
+                  to={s.href}
+                  className="group block bg-gradient-card border border-border rounded-sm p-8 hover:border-primary hover:glow-red transition-all h-full"
+                >
+                  {inner}
+                </Link>
+              </motion.div>
+            ) : (
+              <motion.div key={s.title} {...fadeUp} transition={{ delay: i * 0.1 }} className="bg-gradient-card border border-border rounded-sm p-8">
+                {inner}
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>
