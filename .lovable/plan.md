@@ -1,64 +1,63 @@
-# Plan: Greenroom Booking Page + Studio Pricing Enrichment
+# Plan: `/book-studio` page — "What to Expect & Book"
 
-## 1. New page: `/greenroom` (`src/pages/Greenroom.tsx`)
+A new SEO-optimized landing page that walks artists through the studio booking experience and funnels them to payment, then a GHL calendar.
 
-**Hero**
-- Tagline: "THE GREENROOM — Houston's video, podcast & content shoot space"
-- Single CTA: "Book the Greenroom" (scrolls to form)
+## Branding
+- Use **"The L3ague Studios"** wherever the copy says "The League Studios."
+- Site shell (Navbar / Footer) stays SaintPen.
 
-**What you can shoot here**
-Cards: Podcast recording • Video shoots & music videos • Photoshoots • Skits / content creation
+## Route & nav
+- Add `/book-studio` route in `App.tsx`.
+- New file: `src/pages/BookStudio.tsx`.
+- Add "Book" link to `Navbar.tsx` (between Studio and Greenroom).
+- Update Navbar's "BOOK NOW" button to point at `/book-studio` instead of `/recording-studio`.
 
-**Pricing (tiered)**
-| Tier | Duration | Price | Notes |
-|------|----------|-------|-------|
-| Hourly | 1 hr | **$60** | Extend hour-by-hour at $60/hr |
-| Half-Day | 4 hrs | **$200** | Save $40 vs hourly |
-| Full-Day | 8 hrs | **$350** | Best value — save $130 |
+## Page sections (top → bottom)
 
-Note: "Same space doubles as the Recording Studio — switch between audio booth and video set in one session."
+1. **Hero**
+   - H1: "Flexible Studio Sessions in Houston — Book by the Hour or the Day"
+   - Sub: "12PM–midnight, 7 days a week. Book when inspiration hits."
+   - Primary CTA: "BOOK YOUR SESSION" → scrolls to #booking
+   - Secondary: address chip "7400 Harwin Drive, Houston, TX"
 
-**Add-ons**
-- Lighting rigs & backdrops — **Included**
-- Videographer / camera op — **+$200**
-- Post-production editing — **$8/min** of finished footage
-- On-set makeup artist — **$297 per person**
+2. **Book When Inspiration Hits** (H2 + copy as provided)
 
-**Booking form (inline)**
-Fields, all zod-validated client-side:
-- Name (required, ≤100)
-- Email (required, valid, ≤255)
-- Phone (optional, ≤20)
-- Shoot type (select: Podcast / Video / Photo / Skit / Other)
-- Tier (select: Hourly / Half-Day / Full-Day)
-- Preferred date (shadcn DatePicker, future dates only)
-- Add-ons (checkboxes: Videographer, Post-production, Makeup artist)
-- Notes (textarea, ≤1000)
+3. **Houston's Most Flexible Recording Studio** (H2 + copy)
 
-Submit handler: builds a pre-filled `mailto:saintpen409@gmail.com` with subject "Greenroom Booking — {name}" and the details URL-encoded in the body, then `window.location.href = mailto`. Shows a sonner toast confirming. No backend table needed for v1 (matches existing site pattern).
+4. **Session Types** (H2: "Hourly, Full-Day & Late-Night Sessions Available")
+   - 3 cards: Hourly bookings • Full-day blocks • Late-night sessions
+   - Hours/address line below the grid
 
-## 2. Enrich studio pricing on `RecordingStudio.tsx`
+5. **Simple Online Booking. Instant Confirmation.** (H2 + copy)
+   - Big CTA → scrolls to #booking
 
-Replace the single "Pricing" card with a richer pricing block that covers BOTH audio + Greenroom:
+6. **Why Artists Choose The L3ague Studios** (H2 + 6-item bulleted grid with check icons)
 
-- **Audio session** — $120 minimum (2 hrs), $50/hr after
-- **Greenroom hourly** — $60/hr (extendable)
-- **Greenroom half-day** — $200 / 4 hrs
-- **Greenroom full-day** — $350 / 8 hrs
-- **Members** — discounted rates baked into membership tiers
+7. **Booking section (`#booking`)**
+   - Title: "RESERVE YOUR SESSION"
+   - Step indicator: ① Pay deposit → ② Pick your time on the calendar → ③ Get instant confirmation
+   - Two payment buttons (placeholders until Stripe products exist):
+     - "Reserve Hourly Session" 
+     - "Reserve Full-Day Block"
+     - Both render as disabled-styled buttons with helper text "Stripe checkout coming online — meanwhile email saintpen409@gmail.com." OR a mailto fallback (I'll use a working mailto so the page is functional today; we'll swap to Stripe payment links once products are created).
+   - Below buttons: a placeholder card labeled "GHL Calendar — appears here after payment" with an `iframe` slot stub (commented `data-ghl-calendar` div) so we can drop the embed in later without restructuring.
 
-Add a CTA card linking to `/greenroom` for video/podcast shoots, and update the hero subhead to mention "audio + video + podcast under one roof."
+8. **Footer SEO line** (small print at bottom of page, NOT site footer):
+   "The L3ague Studios | Recording Studio in Houston, TX | 7400 Harwin Drive, Houston, TX | Open Daily 12PM – 12AM | Book Online at saintpen.com"
 
-## 3. Navigation
-- Add "Greenroom" link to `Navbar.tsx` between "Recording Studio" and "Membership."
-- Register route in `App.tsx`.
+## SEO
+- Use `react-helmet-async` if already installed; otherwise set `document.title` + meta description in a `useEffect` (check existing pattern on other pages first and match it — no new deps unless the project already has Helmet).
+- Title: "Book Recording Studio Time in Houston | The L3ague Studios – Hourly & Full-Day Sessions"
+- Meta description: provided copy.
+- JSON-LD `LocalBusiness` / `MusicVenue` block in a `<script type="application/ld+json">` injected via the same pattern, with name, address (7400 Harwin Drive, Houston, TX), openingHours `Mo-Su 12:00-24:00`, telephone (skip if unknown), priceRange "$$".
+- Single H1, semantic `<section>` per H2, descriptive alt text on any imagery using the suggested alt slugs.
+- No new images generated in v1 — sections use the existing dark/gradient styling and lucide icons. (We can add hero photography later.)
 
-## 4. SEO
-- `<title>`: "Greenroom Booking — Houston Video, Podcast & Photo Studio | SaintPen" (<60 chars target)
-- Meta description: hourly $60, half-day $200, full-day $350
-- Single H1, semantic sections, alt text on imagery (reuse existing studio imagery if present, else gradient hero only).
+## Design
+- Reuse `SectionHeading`, `bg-gradient-card`, `bg-gradient-dark`, `text-gradient-gold`, `glow-red` — same look as Greenroom and Studio pages so it feels native.
+- Framer-motion fadeUp on each section.
 
-## Out of scope (not changing)
-- No Stripe wiring on the Greenroom page yet — booking goes via email like the rest of the site. We can swap to Stripe checkout once products are created.
-- No new database tables.
-- Membership page untouched.
+## Out of scope
+- No Stripe product creation in this turn (we'll wire payment links after products exist).
+- No GHL embed code yet — leaving a clearly marked slot.
+- No DB tables.
