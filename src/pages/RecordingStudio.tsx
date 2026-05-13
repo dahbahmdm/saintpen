@@ -84,7 +84,7 @@ const RecordingStudio = () => (
             { tag: "GREENROOM", name: "Half-Day", price: "$200", unit: "4 hours", note: "Best for podcasts & quick shoots — save $40." , featured: true },
             { tag: "GREENROOM", name: "Full-Day", price: "$350", unit: "8 hours", note: "Music videos, multi-look shoots — save $130." },
             { tag: "MEMBERS", name: "Recurring Access", price: "From $600", unit: "per month", note: "6–12 guaranteed weekly hours across studio + Greenroom." },
-            { tag: "STARTER", name: "Young Artist Rate", price: "$20–$25", unit: "per hour", note: "Discounted hourly tier for emerging artists." },
+            { tag: "STARTER", name: "Young Artist Rate", price: "$40", unit: "1st hour", note: "Discounted hourly tier for emerging artists. New Clients ONLY." },
           ].map((p, i) => (
             <motion.div
               key={p.name}
