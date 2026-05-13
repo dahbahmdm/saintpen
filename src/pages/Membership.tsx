@@ -132,7 +132,7 @@ const Membership = () => (
             <span className="font-display text-xs tracking-[0.3em] text-accent mb-2 block">STARTER RATE</span>
             <h3 className="font-display text-2xl mb-2">New artist rate</h3>
             <p className="text-muted-foreground max-w-xl">
-              Not ready for a full monthly membership? Newer artists can lock in a guaranteed <span className="text-foreground font-semibold">$40–$45 per hour</span> rate — no monthly commitment, just studio time when you need it.
+              Not ready for a full monthly membership? Newer artists can lock in a guaranteed <span className="text-foreground font-semibold">$40 1st hour</span> rate — no monthly commitment, just studio time when you need it.
             </p>
           </div>
           <a
