@@ -83,22 +83,25 @@ const RecordingStudio = () => (
             { tag: "GREENROOM", name: "Hourly", price: "$60", unit: "per hour", note: "Extend hour-by-hour as needed." },
             { tag: "GREENROOM", name: "Half-Day", price: "$200", unit: "4 hours", note: "Best for podcasts & quick shoots — save $40." , featured: true },
             { tag: "GREENROOM", name: "Full-Day", price: "$350", unit: "8 hours", note: "Music videos, multi-look shoots — save $130." },
-            { tag: "MEMBERS", name: "Recurring Access", price: "From $600", unit: "per month", note: "6–12 guaranteed weekly hours across studio + Greenroom." },
+            { tag: "MEMBERS", name: "Recurring Access", price: "From $600", unit: "per month", note: "6–12 guaranteed weekly hours across studio + Greenroom.", href: "/membership" },
             { tag: "STARTER", name: "Young Artist Rate", price: "$40", unit: "1st hour", note: "Discounted hourly tier for emerging artists. New Clients ONLY." },
-          ].map((p, i) => (
-            <motion.div
-              key={p.name}
-              {...fadeUp}
-              transition={{ delay: i * 0.05 }}
-              className={`rounded-sm p-6 border bg-gradient-card relative ${p.featured ? "border-primary glow-red" : "border-border"}`}
-            >
-              <span className="font-display text-[10px] tracking-[0.3em] text-accent">{p.tag}</span>
-              <h3 className="font-display text-lg mt-1 mb-3">{p.name}</h3>
-              <div className="text-3xl font-bold text-gradient-gold">{p.price}</div>
-              <p className="text-xs text-muted-foreground mb-3">{p.unit}</p>
-              <p className="text-sm text-muted-foreground leading-relaxed">{p.note}</p>
-            </motion.div>
-          ))}
+          ].map((p, i) => {
+            const cardClass = `rounded-sm p-6 border bg-gradient-card relative block h-full ${p.featured ? "border-primary glow-red" : "border-border"} ${p.href ? "hover:border-primary transition-all" : ""}`;
+            const inner = (
+              <>
+                <span className="font-display text-[10px] tracking-[0.3em] text-accent">{p.tag}</span>
+                <h3 className="font-display text-lg mt-1 mb-3">{p.name}</h3>
+                <div className="text-3xl font-bold text-gradient-gold">{p.price}</div>
+                <p className="text-xs text-muted-foreground mb-3">{p.unit}</p>
+                <p className="text-sm text-muted-foreground leading-relaxed">{p.note}</p>
+              </>
+            );
+            return (
+              <motion.div key={p.name} {...fadeUp} transition={{ delay: i * 0.05 }}>
+                {p.href ? <Link to={p.href} className={cardClass}>{inner}</Link> : <div className={cardClass}>{inner}</div>}
+              </motion.div>
+            );
+          })}
         </div>
         <div className="text-center mt-10">
           <Link
