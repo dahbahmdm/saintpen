@@ -7,6 +7,7 @@ import logo from "@/assets/saint-pen-logo.jpg";
 const navLinks = [
   { to: "/", label: "Home" },
   { to: "/recording-studio", label: "Studio" },
+  { to: "/book-studio", label: "Book" },
   { to: "/greenroom", label: "Greenroom" },
   { to: "/music", label: "Music" },
   { to: "/merch", label: "Merch" },
@@ -41,7 +42,7 @@ const Navbar = () => {
             </Link>
           ))}
           <Link
-            to="/recording-studio"
+            to="/book-studio"
             className="font-display text-sm tracking-wider bg-primary text-primary-foreground px-5 py-2 rounded-sm hover:bg-primary/90 transition-colors"
           >
             BOOK NOW
@@ -77,7 +78,7 @@ const Navbar = () => {
                 </Link>
               ))}
               <Link
-                to="/recording-studio"
+                to="/book-studio"
                 onClick={() => setOpen(false)}
                 className="font-display text-lg tracking-wider bg-primary text-primary-foreground px-5 py-3 rounded-sm text-center mt-2"
               >
