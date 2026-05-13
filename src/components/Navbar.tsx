@@ -7,6 +7,7 @@ import logo from "@/assets/saint-pen-logo.jpg";
 const navLinks = [
   { to: "/", label: "Home" },
   { to: "/recording-studio", label: "Studio" },
+  { to: "/greenroom", label: "Greenroom" },
   { to: "/music", label: "Music" },
   { to: "/merch", label: "Merch" },
   { to: "/membership", label: "Membership" },

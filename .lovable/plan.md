@@ -1,55 +1,64 @@
-## Plan: Add Membership Page
+# Plan: Greenroom Booking Page + Studio Pricing Enrichment
 
-Create a new `/membership` route showcasing the studio's recurring-revenue membership program with pricing tiers, benefits, and security/contract details.
+## 1. New page: `/greenroom` (`src/pages/Greenroom.tsx`)
 
-### 1. New file: `src/pages/Membership.tsx`
+**Hero**
+- Tagline: "THE GREENROOM — Houston's video, podcast & content shoot space"
+- Single CTA: "Book the Greenroom" (scrolls to form)
 
-Sections:
+**What you can shoot here**
+Cards: Podcast recording • Video shoots & music videos • Photoshoots • Skits / content creation
 
-1. **Hero**
-   - Eyebrow: "RECURRING ACCESS"
-   - Headline: "STUDIO MEMBERSHIP"
-   - Subhead about guaranteed weekly hours, priority booking, lower rates
-   - Primary CTA: "BECOME A MEMBER" → `mailto:saintpen409@gmail.com?subject=Membership%20Inquiry`
+**Pricing (tiered)**
+| Tier | Duration | Price | Notes |
+|------|----------|-------|-------|
+| Hourly | 1 hr | **$60** | Extend hour-by-hour at $60/hr |
+| Half-Day | 4 hrs | **$200** | Save $40 vs hourly |
+| Full-Day | 8 hrs | **$350** | Best value — save $130 |
 
-2. **Pricing Tiers** (4 cards + 1 starter card)
-   - 6 hrs/week — $600/mo (badge: "$900 value")
-   - 8 hrs/week — $700/mo
-   - 10 hrs/week — $800/mo
-   - 12 hrs/week — $1,000/mo (badge: "Best Value")
-   - Starter / Youth Rate — "$20–$25 / hr guaranteed" (separate card below, framed for younger artists who can't commit monthly yet)
-   - Each card: hours, price, included perks, CTA button
+Note: "Same space doubles as the Recording Studio — switch between audio booth and video set in one session."
 
-3. **Member Benefits** (icon grid, 4–6 items)
-   - Reduced session rate: $100 for 3-hr (vs $120 standard)
-   - 1-hour booking flexibility (non-members min 2 hrs)
-   - Priority scheduling
-   - Guaranteed weekly hours
-   - Path to 24/7 self-access (future)
+**Add-ons**
+- Lighting rigs & backdrops — **Included**
+- Videographer / camera op — **+$200**
+- Post-production editing — **$8/min** of finished footage
+- On-set makeup artist — **$297 per person**
 
-4. **How It Works / Requirements**
-   - Signed digital contract
-   - $100 refundable deposit on file (refunded after damage-free verification)
-   - Usage capped at ~2–3 sessions/week to keep studio available
-   - Phrased as transparent terms, not fine print
+**Booking form (inline)**
+Fields, all zod-validated client-side:
+- Name (required, ≤100)
+- Email (required, valid, ≤255)
+- Phone (optional, ≤20)
+- Shoot type (select: Podcast / Video / Photo / Skit / Other)
+- Tier (select: Hourly / Half-Day / Full-Day)
+- Preferred date (shadcn DatePicker, future dates only)
+- Add-ons (checkboxes: Videographer, Post-production, Makeup artist)
+- Notes (textarea, ≤1000)
 
-5. **The Future: Self-Access Studio**
-   - Short narrative section explaining the roadmap toward magnetic-deadbolt + camera remote access for trusted members ("laundromat-style" reframed as "24/7 self-access")
+Submit handler: builds a pre-filled `mailto:saintpen409@gmail.com` with subject "Greenroom Booking — {name}" and the details URL-encoded in the body, then `window.location.href = mailto`. Shows a sonner toast confirming. No backend table needed for v1 (matches existing site pattern).
 
-6. **CTA footer** — email to apply + link to `/contact`
+## 2. Enrich studio pricing on `RecordingStudio.tsx`
 
-### 2. Wire up routing & nav
+Replace the single "Pricing" card with a richer pricing block that covers BOTH audio + Greenroom:
 
-- `src/App.tsx`: import `Membership`, add `<Route path="/membership" element={<Membership />} />`
-- `src/components/Navbar.tsx`: add `{ to: "/membership", label: "Membership" }` to `navLinks` (placed between Merch and About)
+- **Audio session** — $120 minimum (2 hrs), $50/hr after
+- **Greenroom hourly** — $60/hr (extendable)
+- **Greenroom half-day** — $200 / 4 hrs
+- **Greenroom full-day** — $350 / 8 hrs
+- **Members** — discounted rates baked into membership tiers
 
-### 3. Styling
+Add a CTA card linking to `/greenroom` for video/podcast shoots, and update the hero subhead to mention "audio + video + podcast under one roof."
 
-- Reuse existing design tokens: `bg-gradient-dark`, `bg-gradient-card`, `text-gradient-gold`, `text-gradient-red`, `glow-red`, `glow-gold`, `font-display`, container, `SectionHeading`
-- Framer-motion `fadeUp` pattern matching `RecordingStudio.tsx` and `Index.tsx`
-- Highlight the 12 hr/week tier with primary border + glow; starter/youth tier in a muted secondary card to signal it's an alternative entry point
-- No new colors, no new images — type-driven pricing layout
+## 3. Navigation
+- Add "Greenroom" link to `Navbar.tsx` between "Recording Studio" and "Membership."
+- Register route in `App.tsx`.
 
-### Notes
-- No backend, no payment integration — all CTAs are mailto for now (matches the rest of the site)
-- Copy will soften the legal "limit to 2–3 sessions/week" language for public-facing presentation while keeping it clear
+## 4. SEO
+- `<title>`: "Greenroom Booking — Houston Video, Podcast & Photo Studio | SaintPen" (<60 chars target)
+- Meta description: hourly $60, half-day $200, full-day $350
+- Single H1, semantic sections, alt text on imagery (reuse existing studio imagery if present, else gradient hero only).
+
+## Out of scope (not changing)
+- No Stripe wiring on the Greenroom page yet — booking goes via email like the rest of the site. We can swap to Stripe checkout once products are created.
+- No new database tables.
+- Membership page untouched.
