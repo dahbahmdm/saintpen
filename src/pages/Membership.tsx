@@ -130,13 +130,13 @@ const Membership = () => (
         <motion.div {...fadeUp} className="mt-10 bg-secondary/50 border border-border rounded-sm p-8 md:flex md:items-center md:justify-between gap-6">
           <div>
             <span className="font-display text-xs tracking-[0.3em] text-accent mb-2 block">STARTER RATE</span>
-            <h3 className="font-display text-2xl mb-2">Young Artist Hourly</h3>
+            <h3 className="font-display text-2xl mb-2">New artist rate</h3>
             <p className="text-muted-foreground max-w-xl">
-              Not ready for a full monthly membership? Younger artists can lock in a guaranteed <span className="text-foreground font-semibold">$20–$25 per hour</span> rate — no monthly commitment, just studio time when you need it.
+              Not ready for a full monthly membership? Newer artists can lock in a guaranteed <span className="text-foreground font-semibold">$40–$45 per hour</span> rate — no monthly commitment, just studio time when you need it.
             </p>
           </div>
           <a
-            href="mailto:saintpen409@gmail.com?subject=Young%20Artist%20Hourly%20Rate"
+            href="mailto:saintpen409@gmail.com?subject=New%20Artist%20Hourly%20Rate"
             className="mt-4 md:mt-0 inline-flex items-center gap-2 font-display text-sm tracking-wider border border-accent text-accent px-6 py-3 rounded-sm hover:bg-accent hover:text-accent-foreground transition-all shrink-0"
           >
             ASK ABOUT IT <ArrowRight size={14} />
@@ -229,7 +229,7 @@ const Membership = () => (
         <motion.div {...fadeUp}>
           <h2 className="text-3xl md:text-5xl font-bold mb-4">READY TO LOCK IN YOUR HOURS?</h2>
           <p className="text-muted-foreground max-w-lg mx-auto mb-8">
-            Email us to apply for membership or ask about the young artist hourly rate.
+            Email us to apply for membership or ask about the new artist rate.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <a
