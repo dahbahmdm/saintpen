@@ -229,7 +229,7 @@ const Membership = () => (
         <motion.div {...fadeUp}>
           <h2 className="text-3xl md:text-5xl font-bold mb-4">READY TO LOCK IN YOUR HOURS?</h2>
           <p className="text-muted-foreground max-w-lg mx-auto mb-8">
-            Email us to apply for membership or ask about the young artist hourly rate.
+            Email us to apply for membership or ask about the new artist rate.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <a
