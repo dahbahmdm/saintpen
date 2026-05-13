@@ -27,7 +27,7 @@ const RecordingStudio = () => (
             href="mailto:saintpen409@gmail.com?subject=Studio%20Booking%20Inquiry"
             className="inline-flex items-center gap-2 font-display text-sm tracking-wider bg-primary text-primary-foreground px-8 py-4 rounded-sm hover:bg-primary/90 transition-all glow-red"
           >
-            BOOK NOW — $120 MINIMUM <ArrowRight size={16} />
+            BOOK NOW — $100 MINIMUM <ArrowRight size={16} />
           </a>
         </motion.div>
       </div>
