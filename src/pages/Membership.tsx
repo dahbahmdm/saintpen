@@ -46,7 +46,7 @@ const tiers = [
 ];
 
 const benefits = [
-  { icon: Clock, title: "Reduced Session Rate", desc: "$100 for a 3-hour session vs the $120 standard rate." },
+  { icon: Clock, title: "Reduced Session Rate", desc: "$100 for a 3-hour session vs the $60 standard rate." },
   { icon: Calendar, title: "1-Hour Bookings", desc: "Non-members have a 2-hour minimum. Members can book single hours." },
   { icon: Star, title: "Priority Scheduling", desc: "Members get first pick on the calendar before public bookings open." },
   { icon: Sparkles, title: "Guaranteed Weekly Hours", desc: "Lock in studio time every week — no scrambling for slots." },
