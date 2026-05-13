@@ -136,7 +136,7 @@ const Membership = () => (
             </p>
           </div>
           <a
-            href="mailto:saintpen409@gmail.com?subject=Young%20Artist%20Hourly%20Rate"
+            href="mailto:saintpen409@gmail.com?subject=New%20Artist%20Hourly%20Rate"
             className="mt-4 md:mt-0 inline-flex items-center gap-2 font-display text-sm tracking-wider border border-accent text-accent px-6 py-3 rounded-sm hover:bg-accent hover:text-accent-foreground transition-all shrink-0"
           >
             ASK ABOUT IT <ArrowRight size={14} />
