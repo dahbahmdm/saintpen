@@ -39,10 +39,10 @@ const RecordingStudio = () => (
         <SectionHeading label="What's Included" title="STUDIO SERVICES" />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {[
-            { icon: Mic2, title: "Audio Recording", desc: "Professional vocal & instrument recording with industry-standard equipment. Perfect sound isolation and mixing capabilities." },
-            { icon: Camera, title: "Green Room", desc: "Full video production, photography, podcast and skit creation space. Lighting rigs and backdrops included." },
-            { icon: Clock, title: "Flexible Sessions", desc: "Book by the hour, half-day, or full-day. Late night sessions available for that midnight inspiration.", href: "/book-studio" },
-            { icon: DollarSign, title: "Member Discounts", desc: "Recurring access from $600/mo unlocks discounted studio + Greenroom hours and priority scheduling." },
+            { icon: Mic2, title: "Audio Recording", desc: "Professional vocal & instrument recording with industry-standard equipment. Perfect sound isolation and mixing capabilities.", href: "/book-studio" },
+            { icon: Camera, title: "Green Room", desc: "Full video production, photography, podcast and skit creation space. Lighting rigs and backdrops included.", href: "/greenroom" },
+            { icon: Clock, title: "Flexible Sessions", desc: "Book by the hour, half-day, or full-day. Late night sessions available for that midnight inspiration.", href: "/about" },
+            { icon: DollarSign, title: "Member Discounts", desc: "Recurring access from $600/mo unlocks discounted studio + Greenroom hours and priority scheduling.", href: "/membership" },
           ].map((s, i) => {
             const inner = (
               <>
