@@ -1,7 +1,17 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Clock, Star, Calendar, Shield, KeyRound, Sparkles, ArrowRight, Check } from "lucide-react";
 import SectionHeading from "@/components/SectionHeading";
+import MembershipCheckoutModal from "@/components/MembershipCheckoutModal";
+import MemberDiscountLeadForm from "@/components/MemberDiscountLeadForm";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 const fadeUp = {
   initial: { opacity: 0, y: 30 },
@@ -15,8 +25,10 @@ const tiers = [
     hours: "6 hrs / week",
     price: "$600",
     period: "/ month",
-    badge: "$900 value",
-    perks: ["Priority scheduling", "$100 / 3-hr session rate", "1-hour bookings unlocked"],
+    badge: "Starter",
+    priceId: "price_1TXuf3KYH1trsn80bU7tRBgv",
+    name: "Starter Membership",
+    perks: ["Priority scheduling", "$100 / 3-hr overflow block", "1-hour bookings unlocked", "Self-engineer rate $20–$25/hr"],
     featured: false,
   },
   {
@@ -24,7 +36,9 @@ const tiers = [
     price: "$700",
     period: "/ month",
     badge: "",
-    perks: ["Priority scheduling", "$100 / 3-hr session rate", "1-hour bookings unlocked"],
+    priceId: "price_1TXuf5KYH1trsn80U4YFWOJK",
+    name: "Plus Membership",
+    perks: ["Priority scheduling", "$100 / 3-hr overflow block", "1-hour bookings unlocked", "Self-engineer rate $20–$25/hr"],
     featured: false,
   },
   {
@@ -32,29 +46,38 @@ const tiers = [
     price: "$800",
     period: "/ month",
     badge: "Most Popular",
-    perks: ["Priority scheduling", "$100 / 3-hr session rate", "1-hour bookings unlocked"],
+    priceId: "price_1TXuf6KYH1trsn802WAuno8w",
+    name: "Pro Membership",
+    perks: ["Priority scheduling", "$100 / 3-hr overflow block", "1-hour bookings unlocked", "Self-engineer rate $20–$25/hr"],
     featured: true,
   },
   {
     hours: "12 hrs / week",
     price: "$1,000",
     period: "/ month",
-    badge: "Best Value",
-    perks: ["Priority scheduling", "$100 / 3-hr session rate", "1-hour bookings unlocked"],
+    badge: "Max Tier",
+    priceId: "price_1TXuf8KYH1trsn80H0VeGAqk",
+    name: "Elite Membership",
+    perks: ["Priority scheduling", "$100 / 3-hr overflow block", "1-hour bookings unlocked", "Self-engineer rate $20–$25/hr"],
     featured: false,
   },
 ];
 
 const benefits = [
-  { icon: Clock, title: "Reduced Session Rate", desc: "$100 for a 3-hour session vs the $60 standard rate." },
-  { icon: Calendar, title: "1-Hour Bookings", desc: "Non-members have a 2-hour minimum. Members can book single hours." },
+  { icon: Clock, title: "Overflow Block Rate", desc: "Exhausted your weekly hours? Members grab a 3-hour overflow block for a flat $100." },
+  { icon: Calendar, title: "1-Hour Bookings", desc: "Non-members have a 2-hour minimum ($100). Members can book single hours." },
   { icon: Star, title: "Priority Scheduling", desc: "Members get first pick on the calendar before public bookings open." },
   { icon: Sparkles, title: "Guaranteed Weekly Hours", desc: "Lock in studio time every week — no scrambling for slots." },
-  { icon: Shield, title: "Deposit-Backed Trust", desc: "$100 refundable deposit on file, returned after damage-free verification." },
+  { icon: Shield, title: "Self-Engineer Discount", desc: "Active members engineering their own sessions get a $20–$25/hr rate." },
   { icon: KeyRound, title: "Path to 24/7 Self-Access", desc: "Trusted members will graduate into our future remote-access studio." },
 ];
 
-const Membership = () => (
+const Membership = () => {
+  const [checkoutTier, setCheckoutTier] = useState<{ name: string; priceId: string } | null>(null);
+  const [discountOpen, setDiscountOpen] = useState(false);
+
+  return (
+
   <div className="min-h-screen pt-20">
     {/* Hero */}
     <section className="py-20 md:py-28 bg-gradient-dark">
