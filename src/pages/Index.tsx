@@ -71,7 +71,7 @@ const Index = () => {
             </p>
             <div className="flex flex-wrap gap-4">
               <Link
-                to="/recording-studio"
+                to="/book-studio"
                 className="inline-flex items-center gap-2 font-display text-sm tracking-wider bg-primary text-primary-foreground px-8 py-4 rounded-sm hover:bg-primary/90 transition-all glow-red">
 
                 BOOK STUDIO TIME <ArrowRight size={16} />
