@@ -1,7 +1,8 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Clock, Moon, CalendarDays, Check, ArrowRight, MapPin, CreditCard, CalendarCheck, Sparkles } from "lucide-react";
 import SectionHeading from "@/components/SectionHeading";
+import SessionPickerModal, { type SessionCategory } from "@/components/SessionPickerModal";
 
 const fadeUp = {
   initial: { opacity: 0, y: 30 },
@@ -36,6 +37,8 @@ const steps = [
 ];
 
 const BookStudio = () => {
+  const [pickerCategory, setPickerCategory] = useState<SessionCategory | null>(null);
+
   useEffect(() => {
     const prevTitle = document.title;
     document.title = META_TITLE;
@@ -233,29 +236,37 @@ const BookStudio = () => {
 
           {/* Payment buttons */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-            <a
-              href="mailto:saintpen409@gmail.com?subject=Hourly%20Studio%20Booking"
-              className="bg-gradient-card border border-primary rounded-sm p-6 hover:border-primary hover:glow-red transition-all group"
+            <button
+              type="button"
+              onClick={() => setPickerCategory("hourly")}
+              className="text-left bg-gradient-card border border-primary rounded-sm p-6 hover:border-primary hover:glow-red transition-all group"
             >
               <Clock className="text-primary mb-3" size={28} />
               <h3 className="font-display text-xl mb-1">Hourly Session</h3>
-              <p className="text-sm text-muted-foreground mb-4">Pay deposit → pick your hour on the calendar.</p>
+              <p className="text-sm text-muted-foreground mb-4">Pick your session type → pay → lock your date.</p>
               <span className="inline-flex items-center gap-2 font-display text-sm tracking-wider text-primary group-hover:gap-3 transition-all">
                 RESERVE HOURLY <ArrowRight size={16} />
               </span>
-            </a>
-            <a
-              href="mailto:saintpen409@gmail.com?subject=Full-Day%20Studio%20Booking"
-              className="bg-gradient-card border border-accent rounded-sm p-6 hover:border-accent transition-all group"
+            </button>
+            <button
+              type="button"
+              onClick={() => setPickerCategory("fullday")}
+              className="text-left bg-gradient-card border border-accent rounded-sm p-6 hover:border-accent transition-all group"
             >
               <CalendarDays className="text-accent mb-3" size={28} />
               <h3 className="font-display text-xl mb-1">Full-Day Block</h3>
-              <p className="text-sm text-muted-foreground mb-4">Pay deposit → lock the room for the day.</p>
+              <p className="text-sm text-muted-foreground mb-4">Pick your day type → pay → lock the room.</p>
               <span className="inline-flex items-center gap-2 font-display text-sm tracking-wider text-accent group-hover:gap-3 transition-all">
                 RESERVE FULL-DAY <ArrowRight size={16} />
               </span>
-            </a>
+            </button>
           </div>
+
+          <SessionPickerModal
+            open={pickerCategory !== null}
+            onOpenChange={(open) => !open && setPickerCategory(null)}
+            category={pickerCategory}
+          />
 
           {/* GHL calendar slot */}
           <div

@@ -14,6 +14,7 @@ import Merch from "./pages/Merch";
 import Membership from "./pages/Membership";
 import Greenroom from "./pages/Greenroom";
 import BookStudio from "./pages/BookStudio";
+import PaymentSuccess from "./pages/PaymentSuccess";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -33,6 +34,7 @@ const App = () => (
           <Route path="/membership" element={<Membership />} />
           <Route path="/greenroom" element={<Greenroom />} />
           <Route path="/book-studio" element={<BookStudio />} />
+          <Route path="/payment-success" element={<PaymentSuccess />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
