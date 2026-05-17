@@ -12,7 +12,7 @@ const ALLOWED_PRICES = new Set<string>([
   // Core session products
   "price_1TXuBrKYH1trsn80iJA1UIYw", // Audio Recording Session — $100 (2-hr min)
   "price_1TXuBxKYH1trsn80mUs1uz1V", // Greenroom Hourly — $60
-  "price_1TXuByKYH1trsn80Mimei931", // Late-Night Hourly — $80
+  "price_1TXuByKYH1trsn80Mimei931", // Late-Night Hourly - after 10pm — $80
   "price_1TXuBzKYH1trsn80x4kJMztX", // Greenroom Half-Day — $200
   "price_1TXuC0KYH1trsn8027g1WECg", // Greenroom Full-Day — $350
   "price_1TXuC1KYH1trsn80Sm0qOpli", // Studio Full-Day — $500
