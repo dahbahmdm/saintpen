@@ -123,12 +123,12 @@ const RecordingStudio = () => (
             Email us to book your session or ask about membership pricing for recurring studio access.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <a
-              href="mailto:saintpen409@gmail.com?subject=Studio%20Booking"
+            <Link
+              to="/book-studio"
               className="inline-flex items-center gap-2 font-display text-sm tracking-wider bg-primary text-primary-foreground px-8 py-4 rounded-sm hover:bg-primary/90 transition-all glow-red"
             >
-              EMAIL TO BOOK <ArrowRight size={16} />
-            </a>
+              BOOK NOW <ArrowRight size={16} />
+            </Link>
             <Link
               to="/contact"
               className="inline-flex items-center gap-2 font-display text-sm tracking-wider border border-accent text-accent px-8 py-4 rounded-sm hover:bg-accent hover:text-accent-foreground transition-all"
