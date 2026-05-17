@@ -17,7 +17,7 @@ interface Props {
   onBack: () => void;
 }
 
-const YoungArtistLeadForm = ({ onBack }: Props) => {
+const MemberDiscountLeadForm = ({ onBack }: Props) => {
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState(false);
   const [form, setForm] = useState({ name: "", email: "", phone: "", instagram: "" });
@@ -51,7 +51,7 @@ const YoungArtistLeadForm = ({ onBack }: Props) => {
         <CheckCircle2 className="text-primary mx-auto mb-3" size={40} />
         <h4 className="font-display text-xl mb-2">You're on the list.</h4>
         <p className="text-sm text-muted-foreground">
-          Look out for your special-rate coupon in your email shortly.
+          We'll be in touch with your member discount details shortly.
         </p>
       </div>
     );
@@ -60,9 +60,9 @@ const YoungArtistLeadForm = ({ onBack }: Props) => {
   return (
     <form onSubmit={handleSubmit} className="space-y-3">
       <div>
-        <Label htmlFor="ya-name">Name</Label>
+        <Label htmlFor="md-name">Name</Label>
         <Input
-          id="ya-name"
+          id="md-name"
           value={form.name}
           onChange={(e) => setForm({ ...form, name: e.target.value })}
           required
@@ -70,9 +70,9 @@ const YoungArtistLeadForm = ({ onBack }: Props) => {
         />
       </div>
       <div>
-        <Label htmlFor="ya-email">Email</Label>
+        <Label htmlFor="md-email">Email</Label>
         <Input
-          id="ya-email"
+          id="md-email"
           type="email"
           value={form.email}
           onChange={(e) => setForm({ ...form, email: e.target.value })}
@@ -81,9 +81,9 @@ const YoungArtistLeadForm = ({ onBack }: Props) => {
         />
       </div>
       <div>
-        <Label htmlFor="ya-phone">Phone</Label>
+        <Label htmlFor="md-phone">Phone</Label>
         <Input
-          id="ya-phone"
+          id="md-phone"
           type="tel"
           value={form.phone}
           onChange={(e) => setForm({ ...form, phone: e.target.value })}
@@ -92,9 +92,9 @@ const YoungArtistLeadForm = ({ onBack }: Props) => {
         />
       </div>
       <div>
-        <Label htmlFor="ya-ig">Instagram (optional)</Label>
+        <Label htmlFor="md-ig">Instagram (optional)</Label>
         <Input
-          id="ya-ig"
+          id="md-ig"
           value={form.instagram}
           onChange={(e) => setForm({ ...form, instagram: e.target.value })}
           placeholder="@yourhandle"
@@ -116,11 +116,11 @@ const YoungArtistLeadForm = ({ onBack }: Props) => {
           className="inline-flex items-center gap-2 font-display text-sm tracking-wider bg-primary text-primary-foreground px-6 py-3 rounded-sm hover:bg-primary/90 transition-all disabled:opacity-60"
         >
           {submitting ? <Loader2 size={14} className="animate-spin" /> : null}
-          GET MY COUPON
+          REQUEST DISCOUNT
         </button>
       </div>
     </form>
   );
 };
 
-export default YoungArtistLeadForm;
+export default MemberDiscountLeadForm;

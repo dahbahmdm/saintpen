@@ -79,12 +79,12 @@ const RecordingStudio = () => (
         <SectionHeading label="Transparent Rates" title="STUDIO & GREENROOM PRICING" />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
           {[
-            { tag: "AUDIO", name: "Recording Session", price: "$120", unit: "2-hr minimum", note: "$50/hr after the minimum. Engineer included.", href: "/book-studio" },
+            { tag: "AUDIO", name: "Recording Session", price: "$100", unit: "2-hr minimum", note: "$50/hr after the minimum. Engineer included.", href: "/book-studio" },
             { tag: "GREENROOM", name: "Hourly", price: "$60", unit: "per hour", note: "Extend hour-by-hour as needed.", href: "/greenroom" },
             { tag: "GREENROOM", name: "Half-Day", price: "$200", unit: "4 hours", note: "Best for podcasts & quick shoots — save $40.", featured: true, href: "/greenroom" },
             { tag: "GREENROOM", name: "Full-Day", price: "$350", unit: "8 hours", note: "Music videos, multi-look shoots — save $130.", href: "/greenroom" },
             { tag: "MEMBERS", name: "Recurring Access", price: "From $600", unit: "per month", note: "6–12 guaranteed weekly hours across studio + Greenroom.", href: "/membership" },
-            { tag: "STARTER", name: "Young Artist Rate", price: "$40", unit: "1st hour", note: "Discounted hourly tier for emerging artists. New Clients ONLY." },
+            { tag: "MEMBERS", name: "Member Discount Rate", price: "$20–$25", unit: "per hour", note: "Active members who self-engineer. Request via member discount form.", href: "/book-studio" },
           ].map((p, i) => {
             const cardClass = `rounded-sm p-6 border bg-gradient-card relative block h-full ${p.featured ? "border-primary glow-red" : "border-border"} ${p.href ? "hover:border-primary transition-all" : ""}`;
             const inner = (

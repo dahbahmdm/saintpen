@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Loader2, ArrowRight, Sparkles } from "lucide-react";
+import { Loader2, ArrowRight, Sparkles, Plus, Check } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import {
   Dialog,
@@ -9,7 +9,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { toast } from "@/components/ui/use-toast";
-import YoungArtistLeadForm from "./YoungArtistLeadForm";
+import MemberDiscountLeadForm from "./MemberDiscountLeadForm";
 
 export type SessionCategory = "hourly" | "fullday";
 
@@ -18,16 +18,16 @@ interface SessionOption {
   name: string;
   price: string;
   blurb: string;
-  priceId?: string; // omitted for the young-artist lead option
-  youngArtist?: boolean;
+  priceId?: string; // omitted for the member-discount lead option
+  memberDiscount?: boolean;
 }
 
 const HOURLY: SessionOption[] = [
   {
     id: "audio",
-    name: "Audio Recording",
+    name: "Audio Recording (2-hr min)",
     price: "$100",
-    blurb: "Hourly audio session. Holds your date and time.",
+    blurb: "2-hour minimum session. Engineer included. $50/hr after.",
     priceId: "price_1TXuBrKYH1trsn80iJA1UIYw",
   },
   {
@@ -45,11 +45,11 @@ const HOURLY: SessionOption[] = [
     priceId: "price_1TXuByKYH1trsn80Mimei931",
   },
   {
-    id: "young",
-    name: "Young Artist Rate",
-    price: "Special",
-    blurb: "1st hour discount — new clients only. Get a coupon by email.",
-    youngArtist: true,
+    id: "member-discount",
+    name: "Member Discount Inquiry",
+    price: "Members",
+    blurb: "Active members who self-engineer: request a $20–$25/hr discount.",
+    memberDiscount: true,
   },
 ];
 
@@ -84,6 +84,40 @@ const FULLDAY: SessionOption[] = [
   },
 ];
 
+interface AddOn {
+  id: string;
+  name: string;
+  blurb: string;
+  price: string;
+  priceId: string;
+  quantityPrompt?: boolean; // post-production needs # of minutes
+}
+
+const ADDONS: AddOn[] = [
+  {
+    id: "videographer",
+    name: "Videographer (+$200)",
+    blurb: "On-site camera op for your session.",
+    price: "$200",
+    priceId: "price_1TXufBKYH1trsn80PCN18ISS",
+  },
+  {
+    id: "makeup",
+    name: "Makeup Artist (+$297)",
+    blurb: "Professional MUA on set, per person.",
+    price: "$297",
+    priceId: "price_1TXufCKYH1trsn80mp4QZnzR",
+  },
+  {
+    id: "postprod",
+    name: "Post-Production Editing ($8/min)",
+    blurb: "Pro video editing billed per finished minute.",
+    price: "$8/min",
+    priceId: "price_1TXufDKYH1trsn80ZXZOOKR4",
+    quantityPrompt: true,
+  },
+];
+
 interface Props {
   open: boolean;
   onOpenChange: (open: boolean) => void;
@@ -92,7 +126,8 @@ interface Props {
 
 const SessionPickerModal = ({ open, onOpenChange, category }: Props) => {
   const [loadingId, setLoadingId] = useState<string | null>(null);
-  const [showYoungArtist, setShowYoungArtist] = useState(false);
+  const [showMemberDiscount, setShowMemberDiscount] = useState(false);
+  const [selectedAddOns, setSelectedAddOns] = useState<Record<string, number>>({});
 
   const options =
     category === "hourly" ? HOURLY : category === "fullday" ? FULLDAY : [];
@@ -100,16 +135,38 @@ const SessionPickerModal = ({ open, onOpenChange, category }: Props) => {
   const title =
     category === "hourly" ? "Pick Your Hourly Session" : "Pick Your Full-Day Block";
 
+  const toggleAddOn = (addon: AddOn) => {
+    setSelectedAddOns((prev) => {
+      if (prev[addon.id]) {
+        const next = { ...prev };
+        delete next[addon.id];
+        return next;
+      }
+      let qty = 1;
+      if (addon.quantityPrompt) {
+        const input = window.prompt("How many finished minutes of video editing?", "5");
+        const n = Math.max(1, Math.floor(Number(input)));
+        if (!input || !Number.isFinite(n) || n < 1) return prev;
+        qty = n;
+      }
+      return { ...prev, [addon.id]: qty };
+    });
+  };
+
   const handleSelect = async (opt: SessionOption) => {
-    if (opt.youngArtist) {
-      setShowYoungArtist(true);
+    if (opt.memberDiscount) {
+      setShowMemberDiscount(true);
       return;
     }
     if (!opt.priceId) return;
     try {
       setLoadingId(opt.id);
+      const addOnItems = ADDONS.filter((a) => selectedAddOns[a.id]).map((a) => ({
+        priceId: a.priceId,
+        quantity: selectedAddOns[a.id],
+      }));
       const { data, error } = await supabase.functions.invoke("create-payment", {
-        body: { priceId: opt.priceId },
+        body: { priceId: opt.priceId, addOns: addOnItems },
       });
       if (error) throw error;
       if (!data?.url) throw new Error("No checkout URL returned");
@@ -123,26 +180,29 @@ const SessionPickerModal = ({ open, onOpenChange, category }: Props) => {
   };
 
   const handleClose = (next: boolean) => {
-    if (!next) setShowYoungArtist(false);
+    if (!next) {
+      setShowMemberDiscount(false);
+      setSelectedAddOns({});
+    }
     onOpenChange(next);
   };
 
   return (
     <Dialog open={open} onOpenChange={handleClose}>
-      <DialogContent className="max-w-lg bg-card border-border">
+      <DialogContent className="max-w-lg bg-card border-border max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="font-display tracking-wider text-2xl">
-            {showYoungArtist ? "Young Artist Rate" : title}
+            {showMemberDiscount ? "Member Discount Inquiry" : title}
           </DialogTitle>
           <DialogDescription>
-            {showYoungArtist
-              ? "New clients only. Drop your info — we'll email you your special-rate coupon."
+            {showMemberDiscount
+              ? "For active members who self-engineer. Drop your info and we'll reach out about your discounted rate."
               : "Choose your session. You'll be sent to secure Stripe checkout in a new tab."}
           </DialogDescription>
         </DialogHeader>
 
-        {showYoungArtist ? (
-          <YoungArtistLeadForm onBack={() => setShowYoungArtist(false)} />
+        {showMemberDiscount ? (
+          <MemberDiscountLeadForm onBack={() => setShowMemberDiscount(false)} />
         ) : (
           <>
             <div className="space-y-3">
@@ -156,7 +216,7 @@ const SessionPickerModal = ({ open, onOpenChange, category }: Props) => {
                   <div className="flex items-start justify-between gap-3">
                     <div className="min-w-0">
                       <div className="flex items-center gap-2 mb-1">
-                        {opt.youngArtist && (
+                        {opt.memberDiscount && (
                           <Sparkles size={16} className="text-accent" />
                         )}
                         <h4 className="font-display text-lg">{opt.name}</h4>
@@ -166,7 +226,7 @@ const SessionPickerModal = ({ open, onOpenChange, category }: Props) => {
                     <div className="text-right shrink-0">
                       <div
                         className={`font-display text-xl ${
-                          opt.youngArtist ? "text-accent" : "text-primary"
+                          opt.memberDiscount ? "text-accent" : "text-primary"
                         }`}
                       >
                         {opt.price}
@@ -176,7 +236,7 @@ const SessionPickerModal = ({ open, onOpenChange, category }: Props) => {
                           <Loader2 size={12} className="animate-spin" />
                         ) : (
                           <>
-                            {opt.youngArtist ? "CLAIM" : "RESERVE"} <ArrowRight size={12} />
+                            {opt.memberDiscount ? "REQUEST" : "RESERVE"} <ArrowRight size={12} />
                           </>
                         )}
                       </div>
@@ -185,6 +245,47 @@ const SessionPickerModal = ({ open, onOpenChange, category }: Props) => {
                 </button>
               ))}
             </div>
+
+            <div className="mt-5 pt-4 border-t border-border">
+              <p className="font-display text-xs tracking-[0.25em] text-muted-foreground mb-3">
+                OPTIONAL ADD-ONS
+              </p>
+              <div className="grid grid-cols-1 gap-2">
+                {ADDONS.map((a) => {
+                  const active = !!selectedAddOns[a.id];
+                  return (
+                    <button
+                      key={a.id}
+                      type="button"
+                      onClick={() => toggleAddOn(a)}
+                      className={`flex items-center justify-between text-left rounded-sm border p-3 transition-all ${
+                        active
+                          ? "border-primary bg-primary/5"
+                          : "border-border hover:border-primary/50"
+                      }`}
+                    >
+                      <div className="min-w-0">
+                        <div className="flex items-center gap-2">
+                          {active ? (
+                            <Check size={14} className="text-primary" />
+                          ) : (
+                            <Plus size={14} className="text-muted-foreground" />
+                          )}
+                          <span className="font-display text-sm">{a.name}</span>
+                        </div>
+                        <p className="text-xs text-muted-foreground mt-1 ml-6">
+                          {a.blurb}
+                          {active && selectedAddOns[a.id] > 1
+                            ? ` — ${selectedAddOns[a.id]} min`
+                            : ""}
+                        </p>
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
             <p className="text-xs text-muted-foreground mt-4 leading-relaxed">
               Payments lock your date and act as your deposit. Refundable minus a{" "}
               <span className="text-foreground">10% chargeback fee</span> (we get charged when refunds are issued).
