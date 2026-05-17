@@ -92,7 +92,7 @@ const Membership = () => {
             Guaranteed weekly studio hours, lower session rates, and priority scheduling — built for serious artists who treat the booth like a home base.
           </p>
           <a
-            href="mailto:saintpen409@gmail.com?subject=Membership%20Inquiry"
+            href="#tiers"
             className="inline-flex items-center gap-2 font-display text-sm tracking-wider bg-primary text-primary-foreground px-8 py-4 rounded-sm hover:bg-primary/90 transition-all glow-red"
           >
             BECOME A MEMBER <ArrowRight size={16} />
@@ -102,7 +102,7 @@ const Membership = () => {
     </section>
 
     {/* Pricing Tiers */}
-    <section className="py-20 md:py-28">
+    <section id="tiers" className="py-20 md:py-28">
       <div className="container">
         <SectionHeading label="Pick Your Plan" title="MEMBERSHIP TIERS" />
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -135,8 +135,8 @@ const Membership = () => {
                   </li>
                 ))}
               </ul>
-              <a
-                href={`mailto:saintpen409@gmail.com?subject=Membership%20${encodeURIComponent(t.hours)}`}
+              <button
+                onClick={() => setCheckoutTier({ name: t.name, priceId: t.priceId })}
                 className={`font-display text-sm tracking-wider text-center px-6 py-3 rounded-sm transition-all ${
                   t.featured
                     ? "bg-primary text-primary-foreground hover:bg-primary/90"
@@ -144,26 +144,26 @@ const Membership = () => {
                 }`}
               >
                 CHOOSE PLAN
-              </a>
+              </button>
             </motion.div>
           ))}
         </div>
 
-        {/* Starter / Youth tier */}
+        {/* Member self-engineer discount */}
         <motion.div {...fadeUp} className="mt-10 bg-secondary/50 border border-border rounded-sm p-8 md:flex md:items-center md:justify-between gap-6">
           <div>
-            <span className="font-display text-xs tracking-[0.3em] text-accent mb-2 block">STARTER RATE</span>
-            <h3 className="font-display text-2xl mb-2">New artist rate</h3>
+            <span className="font-display text-xs tracking-[0.3em] text-accent mb-2 block">MEMBERS ONLY</span>
+            <h3 className="font-display text-2xl mb-2">Self-engineer rate</h3>
             <p className="text-muted-foreground max-w-xl">
-              Not ready for a full monthly membership? Newer artists can lock in a guaranteed <span className="text-foreground font-semibold">$40 1st hour</span> rate — no monthly commitment, just studio time when you need it.
+              Active members who engineer their own sessions can request a discounted <span className="text-foreground font-semibold">$20–$25/hr</span> rate. Members only — no public new-artist tier.
             </p>
           </div>
-          <a
-            href="mailto:saintpen409@gmail.com?subject=New%20Artist%20Hourly%20Rate"
+          <button
+            onClick={() => setDiscountOpen(true)}
             className="mt-4 md:mt-0 inline-flex items-center gap-2 font-display text-sm tracking-wider border border-accent text-accent px-6 py-3 rounded-sm hover:bg-accent hover:text-accent-foreground transition-all shrink-0"
           >
-            ASK ABOUT IT <ArrowRight size={14} />
-          </a>
+            REQUEST DISCOUNT <ArrowRight size={14} />
+          </button>
         </motion.div>
       </div>
     </section>
@@ -252,14 +252,14 @@ const Membership = () => {
         <motion.div {...fadeUp}>
           <h2 className="text-3xl md:text-5xl font-bold mb-4">READY TO LOCK IN YOUR HOURS?</h2>
           <p className="text-muted-foreground max-w-lg mx-auto mb-8">
-            Email us to apply for membership or ask about the new artist rate.
+            Pick your tier above, or request the member self-engineer discount.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <a
-              href="mailto:saintpen409@gmail.com?subject=Membership%20Application"
+              href="#tiers"
               className="inline-flex items-center gap-2 font-display text-sm tracking-wider bg-primary text-primary-foreground px-8 py-4 rounded-sm hover:bg-primary/90 transition-all glow-red"
             >
-              APPLY NOW <ArrowRight size={16} />
+              SEE TIERS <ArrowRight size={16} />
             </a>
             <Link
               to="/contact"
@@ -271,7 +271,29 @@ const Membership = () => {
         </motion.div>
       </div>
     </section>
+
+    <MembershipCheckoutModal
+      open={checkoutTier !== null}
+      onOpenChange={(o) => { if (!o) setCheckoutTier(null); }}
+      tierName={checkoutTier?.name ?? ""}
+      priceId={checkoutTier?.priceId ?? null}
+    />
+
+    <Dialog open={discountOpen} onOpenChange={setDiscountOpen}>
+      <DialogContent className="max-w-md bg-card border-border">
+        <DialogHeader>
+          <DialogTitle className="font-display tracking-wider text-2xl">
+            Member Discount Inquiry
+          </DialogTitle>
+          <DialogDescription>
+            For active members who self-engineer. We'll reach out about your $20–$25/hr rate.
+          </DialogDescription>
+        </DialogHeader>
+        <MemberDiscountLeadForm onBack={() => setDiscountOpen(false)} />
+      </DialogContent>
+    </Dialog>
   </div>
-);
+  );
+};
 
 export default Membership;
