@@ -39,7 +39,7 @@ const HOURLY: SessionOption[] = [
   },
   {
     id: "latenight",
-    name: "Late-Night Hourly",
+    name: "Late-Night Hourly - after 10pm",
     price: "$80",
     blurb: "After-hours session for when inspiration hits late.",
     priceId: "price_1TXuByKYH1trsn80Mimei931",
